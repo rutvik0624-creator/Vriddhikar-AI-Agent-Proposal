@@ -28,7 +28,7 @@ export async function processStudentQuery(message: string) {
   const startTime = performance.now();
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3.1-flash-preview',
+      model: 'gemini-3-flash-preview',
       contents: `Student Query: "${message}"\nSender Platform: "Web Simulator"\n\nAnalyze the query and generate the response following the strict output schema.`,
       config: {
         systemInstruction: SYSTEM_PROMPT,
@@ -55,28 +55,8 @@ export async function processStudentQuery(message: string) {
       escalationReason = rawReply.substring(9).trim();
       finalReply = 'I need to connect you with a human team member to help with this. I have escalated your query, and someone will reach out to you shortly. — Vriddhikar Team';
       
-      // Generate escalation summary for Slack/Staff
-      try {
-        const summaryResponse = await ai.models.generateContent({
-          model: 'gemini-3.1-flash-preview',
-          contents: `You are an internal escalation assistant for Vriddhikar Society.
-A student query has been flagged for human intervention.
-
-Original Query: "${message}"
-Escalation Reason: "${escalationReason}"
-
-Task: Generate a brief, 2-sentence summary for the staff Slack channel.
-Format:
-"🚨 *Escalation Alert*
-*Student:* Web User
-*Issue:* [1-sentence summary of the problem]
-*Action Needed:* [1-sentence recommendation for staff]"`
-        });
-        escalationSummary = summaryResponse.text || 'Failed to generate summary.';
-      } catch (summaryError) {
-        console.error("Failed to generate escalation summary:", summaryError);
-        escalationSummary = `🚨 *Escalation Alert*\n*Student:* Web User\n*Issue:* ${escalationReason}\n*Action Needed:* Please review the user's query manually.`;
-      }
+      // Fast static summary instead of a second API call
+      escalationSummary = `🚨 *Escalation Alert*\n*Student:* Web User\n*Issue:* ${escalationReason}\n*Action Needed:* Please review the user's query manually.`;
     }
 
     const endTime = performance.now();

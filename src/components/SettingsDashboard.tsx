@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Settings, Bot, Bell, Shield, Save, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -23,12 +23,12 @@ export const SettingsDashboard: React.FC = () => {
     }, 800);
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } }
   };
@@ -62,7 +62,7 @@ export const SettingsDashboard: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <motion.div variants={itemVariants as any} className="md:col-span-2 space-y-6">
+        <motion.div variants={itemVariants} className="md:col-span-2 space-y-6">
           {/* AI Configuration */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
@@ -146,7 +146,7 @@ export const SettingsDashboard: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="space-y-6">
+        <motion.div variants={itemVariants} className="space-y-6">
           {/* Security & Access */}
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">

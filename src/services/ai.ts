@@ -1,7 +1,18 @@
 import { GoogleGenAI } from '@google/genai';
 
-// Initialize the Gemini API client
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Initialize the Gemini API client lazily to prevent crashes on load if the API key is missing
+let ai: GoogleGenAI | null = null;
+
+function getAIClient() {
+  if (!ai) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      console.error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
+    }
+    ai = new GoogleGenAI({ apiKey: apiKey || 'missing-api-key' });
+  }
+  return ai;
+}
 
 const SYSTEM_PROMPT = `You are the Vriddhikar Society Student Support AI.
 Your goal is to answer student queries warmly, accurately, and concisely based ONLY on the provided Knowledge Base.
@@ -27,7 +38,8 @@ Reply: [warm reply max 4 sentences OR ESCALATE: reason]`;
 export async function processStudentQuery(message: string) {
   const startTime = performance.now();
   try {
-    const response = await ai.models.generateContent({
+    const aiClient = getAIClient();
+    const response = await aiClient.models.generateContent({
       model: 'gemini-3-flash-preview',
       contents: `Student Query: "${message}"\nSender Platform: "Web Simulator"\n\nAnalyze the query and generate the response following the strict output schema.`,
       config: {

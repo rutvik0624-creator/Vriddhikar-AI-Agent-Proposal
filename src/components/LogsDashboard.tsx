@@ -126,7 +126,7 @@ export const LogsDashboard: React.FC<LogsDashboardProps> = ({ logs }) => {
                       <button
                         key={status}
                         onClick={() => {
-                          setFilterStatus(status as any);
+                          setFilterStatus(status as 'All' | 'Resolved' | 'Escalated');
                           setIsFilterOpen(false);
                         }}
                         className={`w-full text-left px-3 py-2 text-sm rounded-lg transition-colors ${

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { LogEntry, EscalationEntry } from '../types';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, LineChart, Line, AreaChart, Area } from 'recharts';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Zap, Clock, CheckCircle2, AlertTriangle, TrendingUp, Users, Calendar, BarChart2 } from 'lucide-react';
 import { format, subDays } from 'date-fns';
 
@@ -90,12 +90,12 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
     return historicalData;
   }, [logs.length, stats.resolved]);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 300, damping: 24 } }
   };
@@ -121,7 +121,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
 
       {/* Top Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <motion.div variants={itemVariants as any} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
+        <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-blue-50 rounded-full transition-transform group-hover:scale-150 duration-500 ease-out z-0"></div>
           <div className="bg-blue-100 p-3 rounded-xl text-blue-600 z-10">
             <Users className="w-6 h-6" />
@@ -135,7 +135,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
+        <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50 rounded-full transition-transform group-hover:scale-150 duration-500 ease-out z-0"></div>
           <div className="bg-emerald-100 p-3 rounded-xl text-emerald-600 z-10">
             <CheckCircle2 className="w-6 h-6" />
@@ -151,7 +151,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
+        <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-purple-50 rounded-full transition-transform group-hover:scale-150 duration-500 ease-out z-0"></div>
           <div className="bg-purple-100 p-3 rounded-xl text-purple-600 z-10">
             <Clock className="w-6 h-6" />
@@ -164,7 +164,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
+        <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 relative overflow-hidden group">
           <div className="absolute -right-4 -top-4 w-24 h-24 bg-amber-50 rounded-full transition-transform group-hover:scale-150 duration-500 ease-out z-0"></div>
           <div className="bg-amber-100 p-3 rounded-xl text-amber-600 z-10">
             <Zap className="w-6 h-6" />
@@ -180,7 +180,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <motion.div variants={itemVariants as any} className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <motion.div variants={itemVariants} className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-bold text-gray-900">Query Volume Trend</h3>
             <span className="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded-md">Last 7 Days</span>
@@ -212,7 +212,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+        <motion.div variants={itemVariants} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
           <h3 className="text-lg font-bold text-gray-900 mb-2">Resolution Status</h3>
           <p className="text-sm text-gray-500 mb-6">AI vs Human handling ratio</p>
           <div className="h-64 flex-grow">
@@ -241,7 +241,7 @@ export const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ logs, es
           </div>
         </motion.div>
 
-        <motion.div variants={itemVariants as any} className="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+        <motion.div variants={itemVariants} className="lg:col-span-3 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <h3 className="text-lg font-bold text-gray-900 mb-6">Queries by Category</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">

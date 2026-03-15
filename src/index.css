@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-brand-primary: #0056b3;
+  --color-brand-secondary: #f8f9fa;
+}
+
+@layer base {
+  body {
+    background-color: #e5e7eb; /* gray-200 */
+    color: #1f2937; /* gray-800 */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+@media print {
+  body {
+    background-color: white;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  .page {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
+
+.page {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 2rem auto;
+  padding: 20mm;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.page-header {
+  position: absolute;
+  top: 10mm;
+  left: 20mm;
+  right: 20mm;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.page-footer {
+  position: absolute;
+  bottom: 10mm;
+  left: 20mm;
+  right: 20mm;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #6b7280;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+}

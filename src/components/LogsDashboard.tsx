@@ -73,7 +73,7 @@ export const LogsDashboard: React.FC<LogsDashboardProps> = ({ logs }) => {
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
     >
-      <div className="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white">
+      <div className="p-4 sm:p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white">
         <div>
           <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
             <Database className="w-5 h-5 text-blue-600" /> Interaction Logs

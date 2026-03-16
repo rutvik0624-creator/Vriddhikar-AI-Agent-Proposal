@@ -23,7 +23,7 @@ export const EscalationDesk: React.FC<EscalationDeskProps> = ({ escalations, onR
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
     >
-      <div className="p-6 border-b border-gray-100 bg-red-50/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="p-4 sm:p-6 border-b border-gray-100 bg-red-50/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-xl font-bold text-red-900 flex items-center gap-2">
             <ShieldAlert className="w-6 h-6 text-red-600" /> Escalation Desk
@@ -55,7 +55,7 @@ export const EscalationDesk: React.FC<EscalationDeskProps> = ({ escalations, onR
         </div>
       </div>
 
-      <div className="flex-grow overflow-auto p-6 bg-gray-50/50">
+      <div className="flex-grow overflow-auto p-4 sm:p-6 bg-gray-50/50">
         {displayedEscalations.length === 0 ? (
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -105,7 +105,7 @@ export const EscalationDesk: React.FC<EscalationDeskProps> = ({ escalations, onR
                       {format(esc.timestamp, 'h:mm a')}
                     </span>
                   </div>
-                  <div className="p-6 flex-grow space-y-5">
+                  <div className="p-4 sm:p-6 flex-grow space-y-4 sm:space-y-5">
                     <div>
                       <p className="text-[11px] text-gray-500 uppercase tracking-widest font-bold mb-2 flex items-center gap-1">
                         <Bot className="w-3 h-3" /> AI Summary
@@ -123,7 +123,7 @@ export const EscalationDesk: React.FC<EscalationDeskProps> = ({ escalations, onR
                       </p>
                     </div>
                   </div>
-                  <div className="p-4 bg-gray-50 border-t border-gray-100 flex justify-between items-center gap-4">
+                  <div className="p-4 bg-gray-50 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
                     {view === 'pending' ? (
                       <>
                         <span className="inline-flex items-center px-3 py-1.5 rounded-md text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">

@@ -16,7 +16,7 @@ import { Toaster, toast } from 'sonner';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<'chat' | 'logs' | 'escalations' | 'analytics' | 'settings'>('chat');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => typeof window !== 'undefined' ? window.innerWidth >= 1024 : true);
   
   // State for the application
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -109,8 +109,16 @@ export default function App() {
     <div className="flex h-screen bg-gray-50 font-sans overflow-hidden">
       <Toaster position="top-right" richColors />
       
+      {/* Mobile Backdrop */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-20 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+      
       {/* Sidebar */}
-      <div className={`bg-[#0f172a] text-slate-300 w-72 flex-shrink-0 flex flex-col transition-all duration-300 shadow-2xl ${isSidebarOpen ? 'translate-x-0' : '-translate-x-72 absolute h-full z-30'}`}>
+      <div className={`fixed inset-y-0 left-0 z-30 w-72 flex-shrink-0 bg-[#0f172a] text-slate-300 flex flex-col transition-transform duration-300 shadow-2xl lg:static lg:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 flex items-center justify-between border-b border-slate-800">
           <div className="flex items-center gap-3">
             <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-xl shadow-lg shadow-blue-500/20">
@@ -199,7 +207,7 @@ export default function App() {
         </div>
 
         {/* Content Area */}
-        <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8 bg-gray-50/50">
+        <main className="flex-1 overflow-auto p-3 sm:p-4 md:p-6 lg:p-8 bg-gray-50/50">
           {activeTab === 'chat' && (
             <div className="max-w-4xl mx-auto h-full">
               <ChatSimulator 

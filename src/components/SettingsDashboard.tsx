@@ -40,7 +40,7 @@ export const SettingsDashboard: React.FC = () => {
       animate="visible"
       className="max-w-4xl mx-auto space-y-6"
     >
-      <div className="flex justify-between items-end bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
         <div>
           <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
             <Settings className="w-6 h-6 text-blue-600" /> System Settings
@@ -64,7 +64,7 @@ export const SettingsDashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <motion.div variants={itemVariants} className="md:col-span-2 space-y-6">
           {/* AI Configuration */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
               <Bot className="w-5 h-5 text-indigo-500" /> AI Configuration
             </h3>
@@ -116,7 +116,7 @@ export const SettingsDashboard: React.FC = () => {
           </div>
 
           {/* Notifications */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
               <Bell className="w-5 h-5 text-amber-500" /> Notification Preferences
             </h3>
@@ -148,7 +148,7 @@ export const SettingsDashboard: React.FC = () => {
 
         <motion.div variants={itemVariants} className="space-y-6">
           {/* Security & Access */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
               <Shield className="w-5 h-5 text-emerald-500" /> Security
             </h3>
@@ -174,7 +174,7 @@ export const SettingsDashboard: React.FC = () => {
           </div>
 
           {/* System Status */}
-          <div className="bg-slate-900 p-6 rounded-2xl shadow-sm text-white">
+          <div className="bg-slate-900 p-4 sm:p-6 rounded-2xl shadow-sm text-white">
             <h3 className="text-lg font-bold flex items-center gap-2 mb-4">
               System Status
             </h3>

@@ -50,7 +50,7 @@ export const ChatSimulator: React.FC<ChatSimulatorProps> = ({ messages, onSendMe
       animate={{ opacity: 1, y: 0 }}
       className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"
     >
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-5 flex items-center justify-between">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 sm:p-5 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <div className="bg-white/20 p-2.5 rounded-full backdrop-blur-sm">
             <Bot className="w-6 h-6" />
@@ -79,7 +79,7 @@ export const ChatSimulator: React.FC<ChatSimulatorProps> = ({ messages, onSendMe
         </div>
       </div>
 
-      <div className="flex-grow overflow-y-auto p-6 space-y-6 bg-[#f8fafc] relative scroll-smooth">
+      <div className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 bg-[#f8fafc] relative scroll-smooth">
         {messages.length === 0 && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
@@ -120,7 +120,7 @@ export const ChatSimulator: React.FC<ChatSimulatorProps> = ({ messages, onSendMe
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center mt-auto ${msg.role === 'user' ? 'bg-gray-200 text-gray-600' : 'bg-blue-100 text-blue-600'}`}>
                   {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                 </div>
-                <div className={`p-4 rounded-2xl shadow-sm relative ${
+                <div className={`p-3 sm:p-4 rounded-2xl shadow-sm relative ${
                   msg.role === 'user' 
                     ? 'bg-blue-600 text-white rounded-br-sm' 
                     : msg.isEscalated 
@@ -171,14 +171,14 @@ export const ChatSimulator: React.FC<ChatSimulatorProps> = ({ messages, onSendMe
         <div ref={messagesEndRef} className="h-4" />
       </div>
 
-      <div className="p-4 bg-white border-t border-gray-100">
+      <div className="p-3 sm:p-4 bg-white border-t border-gray-100">
         <form onSubmit={handleSubmit} className="relative flex items-center">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Type a student query..."
-            className="w-full pl-5 pr-14 py-4 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-[15px]"
+            className="w-full pl-5 pr-14 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-[15px]"
             disabled={isTyping}
           />
           <button

@@ -5,9 +5,10 @@ let ai: GoogleGenAI | null = null;
 
 function getAIClient() {
   if (!ai) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    // Check both Vite's import.meta.env and the defined process.env
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY || process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      console.error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
+      console.error("GEMINI_API_KEY is missing. Please set VITE_GEMINI_API_KEY in your environment variables.");
     }
     ai = new GoogleGenAI({ apiKey: apiKey || 'missing-api-key' });
   }
